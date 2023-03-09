@@ -26,8 +26,9 @@ CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user` varchar(25) DEFAULT NULL,
   `pass` varchar(200) DEFAULT NULL,
+  `role` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +37,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (28,'rcuenca.alt@gmail.com','e8762040fa36c1395a18d32aa6cb0419');
+INSERT INTO `usuarios` VALUES (28,'rcuenca.alt@gmail.com','e8762040fa36c1395a18d32aa6cb0419','admin'),(29,'marc@marc.com','81dc9bdb52d04dc20036dbd8313ed055','basic'),(30,'xdfsdfs@dfdfd.com','d41d8cd98f00b204e9800998ecf8427e','basic'),(31,'dupont@gmail.com','e10adc3949ba59abbe56e057f20f883e','basic'),(32,'coca.ribot@gmail.com','e8762040fa36c1395a18d32aa6cb0419','basic');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 14:25:43
+-- Dump completed on 2023-03-09 15:22:57
