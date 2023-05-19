@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 18-05-2023 a las 14:26:21
--- Versión del servidor: 8.0.32-0ubuntu0.22.10.2
+-- Tiempo de generación: 19-05-2023 a las 16:48:14
+-- Versión del servidor: 8.0.33-0ubuntu0.22.10.2
 -- Versión de PHP: 8.1.7-1ubuntu3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -67,16 +67,18 @@ INSERT INTO `cuarentena` (`id`, `path`, `filename`) VALUES
 
 CREATE TABLE `dispositivos` (
   `id` int NOT NULL,
+  `serial` varchar(255) DEFAULT NULL,
   `id_usb` varchar(255) DEFAULT NULL,
-  `size` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+  `size` varchar(255) DEFAULT NULL,
+  `userFor` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `dispositivos`
 --
 
-INSERT INTO `dispositivos` (`id`, `id_usb`, `size`) VALUES
-(1, 'SANDISK', '16,0GB');
+INSERT INTO `dispositivos` (`id`, `serial`, `id_usb`, `size`, `userFor`) VALUES
+(1, '070338205E517334', 'TDK_LoR', ' 7.3G', NULL);
 
 -- --------------------------------------------------------
 
@@ -123,7 +125,8 @@ ALTER TABLE `cuarentena`
 -- Indices de la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userFor` (`userFor`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -158,6 +161,16 @@ ALTER TABLE `dispositivos`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `dispositivos`
+--
+ALTER TABLE `dispositivos`
+  ADD CONSTRAINT `dispositivos_ibfk_1` FOREIGN KEY (`userFor`) REFERENCES `usuarios` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
