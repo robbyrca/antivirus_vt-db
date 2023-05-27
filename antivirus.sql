@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 27-05-2023 a las 09:47:59
+-- Tiempo de generación: 27-05-2023 a las 09:55:19
 -- Versión del servidor: 8.0.33-0ubuntu0.22.10.2
 -- Versión de PHP: 8.1.7-1ubuntu3.3
 
@@ -31,14 +31,14 @@ CREATE TABLE `archivos` (
   `id` int NOT NULL,
   `path` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `filename` varchar(1000) DEFAULT NULL,
-  `userFor` int DEFAULT NULL
+  `usbFor` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `archivos`
 --
 
-INSERT INTO `archivos` (`id`, `path`, `filename`, `userFor`) VALUES
+INSERT INTO `archivos` (`id`, `path`, `filename`, `usbFor`) VALUES
 (1, '/prueba/prueba', 'pruebafile', NULL),
 (11, '/var/www/html/antivirus/cuarentena', 'rdhjyuklihgmf.sss', NULL),
 (12, '/var/www/html/antivirus/cuarentena', 'rdhjyuklihgmf.sss', NULL),
@@ -365,14 +365,14 @@ CREATE TABLE `cuarentena` (
   `id` int NOT NULL,
   `path` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `filename` varchar(1000) DEFAULT NULL,
-  `userFor` int DEFAULT NULL
+  `usbFor` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `cuarentena`
 --
 
-INSERT INTO `cuarentena` (`id`, `path`, `filename`, `userFor`) VALUES
+INSERT INTO `cuarentena` (`id`, `path`, `filename`, `usbFor`) VALUES
 (1, '/prueba/prueba', 'pruebafile', NULL),
 (2, '/var/www/html/antivirus/archivos', 'eicar.txt', NULL),
 (3, '/var/www/html/antivirus/archivos', 'eicar.txt', NULL),
@@ -442,14 +442,14 @@ INSERT INTO `usuarios` (`id`, `user`, `pass`, `role`) VALUES
 --
 ALTER TABLE `archivos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_archivos_dispositivos` (`userFor`);
+  ADD KEY `fk_archivos_dispositivos` (`usbFor`) USING BTREE;
 
 --
 -- Indices de la tabla `cuarentena`
 --
 ALTER TABLE `cuarentena`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_cuarentena_dispositivos` (`userFor`);
+  ADD KEY `fk_cuarentena_dispositivos` (`usbFor`) USING BTREE;
 
 --
 -- Indices de la tabla `dispositivos`
@@ -500,13 +500,13 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  ADD CONSTRAINT `fk_archivos_dispositivos` FOREIGN KEY (`userFor`) REFERENCES `dispositivos` (`id`);
+  ADD CONSTRAINT `fk_archivos_dispositivos` FOREIGN KEY (`usbFor`) REFERENCES `dispositivos` (`id`);
 
 --
 -- Filtros para la tabla `cuarentena`
 --
 ALTER TABLE `cuarentena`
-  ADD CONSTRAINT `fk_cuarentena_dispositivos` FOREIGN KEY (`userFor`) REFERENCES `dispositivos` (`id`);
+  ADD CONSTRAINT `fk_cuarentena_dispositivos` FOREIGN KEY (`usbFor`) REFERENCES `dispositivos` (`id`);
 
 --
 -- Filtros para la tabla `dispositivos`
